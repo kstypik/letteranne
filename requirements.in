@@ -1,0 +1,4 @@
+django>=5.0,<5.1
+
+# dev dependencies
+ruff
