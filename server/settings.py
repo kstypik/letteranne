@@ -1,5 +1,15 @@
 from pathlib import Path
 
+import environ
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+
+# Note: OS environment variables take precedence over variables from .env
+env.read_env(str(BASE_DIR / ".env"))
+
+
 # 1. Django Core Settings
 
 
@@ -20,20 +30,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASES = {"default": env.db("DATABASE_URL")}
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
-DEBUG = True
+DEBUG = env.bool("DJANGO_DEBUG", False)
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-INSTALLED_APPS = [
+DJANGO_CORE_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,6 +44,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+THIRD_PARTY_APPS = [
+    "django_extensions",
+]
+
+LETERANNE_APPS = []
+
+INSTALLED_APPS = DJANGO_CORE_APPS + THIRD_PARTY_APPS + LETERANNE_APPS
 
 MEDIA_ROOT = BASE_DIR / "media"
 
@@ -58,7 +69,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "server.urls"
 
-SECRET_KEY = "django-insecure-a%!=74&gccx*nm91j1(24q*$a@)n7d$oo=nw*rv1uh&@!7(^#4"
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
