@@ -334,3 +334,6 @@ pyrightconfig.json
 psd
 thumb
 sketch
+
+# Local History for devcontainer
+.devcontainer/bash_history
