@@ -5,6 +5,7 @@ psycopg[binary]
 werkzeug
 
 # dev dependencies
+django-debug-toolbar
 ipython
 pre-commit
 ruff

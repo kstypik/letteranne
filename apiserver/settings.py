@@ -9,6 +9,7 @@ env = environ.Env()
 # Note: OS environment variables take precedence over variables from .env
 env.read_env(str(BASE_DIR / ".env"))
 
+ENVIRONMENT_TYPE = env("DJANGO_ENVIRONMENT_TYPE", default="prod")
 
 # 1. Django Core Settings
 
@@ -36,22 +37,27 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-DJANGO_CORE_APPS = [
+INSTALLED_APPS = [
+    # letteranne apps
+    # Third-party apps
+    "django_extensions",
+    # Django Contrib Apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "debug_toolbar",
 ]
 
-THIRD_PARTY_APPS = [
-    "django_extensions",
-]
 
-LETERANNE_APPS = []
+# https://docs.djangoproject.com/en/5.0/ref/settings/#internal-ips
+# See also: https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
+INTERNAL_IPS = ["127.0.0.1"]
 
-INSTALLED_APPS = DJANGO_CORE_APPS + THIRD_PARTY_APPS + LETERANNE_APPS
+if DEBUG and ENVIRONMENT_TYPE == "dev":
+    INTERNAL_IPS = type("c", (), {"__contains__": lambda *a: True})()
 
 MEDIA_ROOT = BASE_DIR / "media"
 
@@ -65,6 +71,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "apiserver.urls"
@@ -80,7 +87,7 @@ STATIC_URL = "static/"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
