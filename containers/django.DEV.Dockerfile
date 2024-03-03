@@ -67,7 +67,7 @@ RUN sed -i 's/\r//' /start-dev.sh \
     && chmod +x /start-dev.sh
 
 # copy application code to WORKDIR
-COPY ./server ${APP_HOME}
+COPY ./apiserver ${APP_HOME}
 COPY ./manage.py ${APP_HOME}}
 
 ENTRYPOINT ["/entrypoint.sh"]

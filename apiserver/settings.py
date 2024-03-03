@@ -67,7 +67,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "server.urls"
+ROOT_URLCONF = "apiserver.urls"
 
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
@@ -99,4 +99,4 @@ USE_I18N = True
 
 USE_TZ = True
 
-WSGI_APPLICATION = "server.wsgi.application"
+WSGI_APPLICATION = "apiserver.wsgi.application"
