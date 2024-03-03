@@ -44,6 +44,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INSTALLED_APPS = [
     # letteranne apps
     # Third-party apps
+    "django_linear_migrations",
     "django_version_checks",
     "django_watchfiles",
     # Django Contrib Apps

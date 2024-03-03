@@ -1,5 +1,7 @@
 django>=5.0,<5.1
 django-environ
+django-linear-migrations
+django-migration-linter
 django-version-checks
 psycopg[binary]
 

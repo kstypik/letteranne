@@ -2,6 +2,8 @@
 #    uv pip compile requirements.in -o requirements.txt
 anyio==4.3.0
     # via watchfiles
+appdirs==1.4.4
+    # via django-migration-linter
 asgiref==3.7.2
     # via django
 asttokens==2.4.1
@@ -15,10 +17,14 @@ distlib==0.3.8
 django==5.0.2
     # via
     #   django-debug-toolbar
+    #   django-linear-migrations
+    #   django-migration-linter
     #   django-version-checks
     #   django-watchfiles
 django-debug-toolbar==4.3.0
 django-environ==0.11.2
+django-linear-migrations==2.12.0
+django-migration-linter==5.0.0
 django-version-checks==1.11.0
 django-watchfiles==0.1.1
 executing==2.0.1
@@ -78,6 +84,8 @@ sqlparse==0.4.4
     #   django-debug-toolbar
 stack-data==0.6.3
     # via ipython
+toml==0.10.2
+    # via django-migration-linter
 traitlets==5.14.1
     # via
     #   ipython
