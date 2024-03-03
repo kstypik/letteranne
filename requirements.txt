@@ -15,11 +15,9 @@ distlib==0.3.8
 django==5.0.2
     # via
     #   django-debug-toolbar
-    #   django-extensions
     #   django-watchfiles
 django-debug-toolbar==4.3.0
 django-environ==0.11.2
-django-extensions==3.2.3
 django-watchfiles==0.1.1
 executing==2.0.1
     # via stack-data
@@ -32,10 +30,12 @@ idna==3.6
 ipython==8.22.1
 jedi==0.19.1
     # via ipython
-markupsafe==2.1.5
-    # via werkzeug
+markdown-it-py==3.0.0
+    # via rich
 matplotlib-inline==0.1.6
     # via ipython
+mdurl==0.1.2
+    # via markdown-it-py
 nodeenv==1.8.0
     # via pre-commit
 parso==0.8.3
@@ -55,9 +55,12 @@ ptyprocess==0.7.0
 pure-eval==0.2.2
     # via stack-data
 pygments==2.17.2
-    # via ipython
+    # via
+    #   ipython
+    #   rich
 pyyaml==6.0.1
     # via pre-commit
+rich==13.7.1
 ruff==0.3.0
 setuptools==69.1.1
     # via nodeenv
@@ -83,4 +86,3 @@ watchfiles==0.21.0
     # via django-watchfiles
 wcwidth==0.2.13
     # via prompt-toolkit
-werkzeug==3.0.1
