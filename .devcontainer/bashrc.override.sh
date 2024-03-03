@@ -1,9 +1,11 @@
+#!/bin/bash
 # persistent bash history
 HISTFILE=~/.bash_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # set some django env vars
-source /entrypoint
+# shellcheck disable=SC1091
+. /entrypoint
 
 # restore default shell options
 set +o errexit

@@ -27,6 +27,9 @@ ARG APP_HOME=/app
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV BUILD_ENV dev
+# Enable Python Development Mode
+# https://docs.python.org/3/library/devmode.html
+ENV PYTHONDEVMODE=1
 
 WORKDIR ${APP_HOME}
 
@@ -64,7 +67,7 @@ RUN sed -i 's/\r$//g' /entrypoint.sh && chmod +x /entrypoint.sh
 
 COPY ./containers/django.DEV.start.sh /start-dev.sh
 RUN sed -i 's/\r//' /start-dev.sh \
-    && chmod +x /start-dev.sh
+  && chmod +x /start-dev.sh
 
 # copy application code to WORKDIR
 COPY ./apiserver ${APP_HOME}

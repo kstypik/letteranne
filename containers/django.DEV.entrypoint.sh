@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-cmd="$@"
-
 python << END
 import sys
 import time
@@ -34,4 +32,4 @@ END
 >&2 echo "Postgres is up - continuing..."
 
 export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DB
-exec $cmd
+exec "$@"
