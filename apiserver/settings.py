@@ -2,6 +2,9 @@ from pathlib import Path
 
 import environ
 
+# 0. Setup
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
@@ -10,6 +13,7 @@ env = environ.Env()
 env.read_env(str(BASE_DIR / ".env"))
 
 ENVIRONMENT_TYPE = env("DJANGO_ENVIRONMENT_TYPE", default="prod")
+
 
 # 1. Django Core Settings
 
