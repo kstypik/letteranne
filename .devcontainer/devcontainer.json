@@ -44,7 +44,11 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "charliermarsh.ruff",
-        "batisteo.vscode-django"
+        "batisteo.vscode-django",
+        "timonwong.shellcheck",
+        "EditorConfig.EditorConfig",
+        "exiasr.hadolint",
+        "redhat.vscode-yaml"
       ]
     }
   },
