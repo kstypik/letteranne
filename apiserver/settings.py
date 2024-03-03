@@ -44,6 +44,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INSTALLED_APPS = [
     # letteranne apps
     # Third-party apps
+    "django_version_checks",
     "django_watchfiles",
     # Django Contrib Apps
     "django.contrib.admin",
@@ -144,3 +145,15 @@ USE_I18N = True
 USE_TZ = True
 
 WSGI_APPLICATION = "apiserver.wsgi.application"
+
+
+# 2. Django Contrib Settings
+
+
+# 3. Third-party Apps Settings
+
+
+VERSION_CHECKS = {
+    "python": "==3.12.*",
+    "postgresql": "~=16.2",
+}

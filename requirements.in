@@ -1,5 +1,6 @@
 django>=5.0,<5.1
 django-environ
+django-version-checks
 psycopg[binary]
 
 # dev dependencies
