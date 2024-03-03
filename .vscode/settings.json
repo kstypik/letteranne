@@ -1,4 +1,5 @@
 {
+  "editor.formatOnSave": true,
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports.ruff": "explicit"
@@ -8,8 +9,9 @@
   "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome",
     "editor.formatOnSave": true,
-    "editor.codeActionsOnSave":{
+    "editor.codeActionsOnSave": {
       "source.organizeImports.biome": "explicit"
     }
-  }
+  },
+  "yaml.format.enable": true
 }
