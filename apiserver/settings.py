@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # letteranne apps
     # Third-party apps
     "django_linear_migrations",
+    "django_migration_linter",
     "django_version_checks",
     "django_watchfiles",
     # Django Contrib Apps
