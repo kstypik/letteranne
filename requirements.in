@@ -1,11 +1,10 @@
 django>=5.0,<5.1
 django-environ
-django-extensions
 psycopg[binary]
-werkzeug
 
 # dev dependencies
 django-debug-toolbar
+django-watchfiles
 ipython
 pre-commit
 ruff

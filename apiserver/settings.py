@@ -40,7 +40,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INSTALLED_APPS = [
     # letteranne apps
     # Third-party apps
-    "django_extensions",
+    "django_watchfiles",
     # Django Contrib Apps
     "django.contrib.admin",
     "django.contrib.auth",
