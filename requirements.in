@@ -5,4 +5,5 @@ psycopg[binary]
 werkzeug
 
 # dev dependencies
+pre-commit
 ruff
