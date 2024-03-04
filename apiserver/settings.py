@@ -43,6 +43,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 INSTALLED_APPS = [
     # letteranne apps
+    "apiserver.users",
     # Third-party apps
     "django_linear_migrations",
     "django_migration_linter",
@@ -150,6 +151,9 @@ WSGI_APPLICATION = "apiserver.wsgi.application"
 
 
 # 2. Django Contrib Settings
+
+
+AUTH_USER_MODEL = "users.User"
 
 
 # 3. Third-party Apps Settings
