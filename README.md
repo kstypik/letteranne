@@ -9,6 +9,7 @@ Below you can find links to the documentation of major projects used in this app
 - [Python 3.12](https://docs.python.org/3.12/)
 - [Django 5.0](https://docs.djangoproject.com/en/5.0/)
 - [Django REST Framework 3.14](https://www.django-rest-framework.org/)
+- [PostgreSQL 16.2](https://www.postgresql.org/docs/16/index.html)
 - [Typescript 5.1](https://www.typescriptlang.org/docs/)
 - [Remix 2.8](https://remix.run/docs/en/2.8)
 - [React 18.2](https://react.dev/learn)
