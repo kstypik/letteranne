@@ -8,6 +8,10 @@ asgiref==3.7.2
     # via django
 asttokens==2.4.1
     # via stack-data
+attrs==23.2.0
+    # via
+    #   jsonschema
+    #   referencing
 cfgv==3.4.0
     # via pre-commit
 decorator==5.1.1
@@ -17,16 +21,30 @@ distlib==0.3.8
 django==5.0.2
     # via
     #   django-debug-toolbar
+    #   django-filter
     #   django-linear-migrations
     #   django-migration-linter
     #   django-version-checks
     #   django-watchfiles
+    #   djangorestframework
+    #   drf-spectacular
+    #   drf-standardized-errors
 django-debug-toolbar==4.3.0
 django-environ==0.11.2
+django-filter==23.5
 django-linear-migrations==2.12.0
 django-migration-linter==5.0.0
+django-rest-framework==0.1.0
 django-version-checks==1.11.0
 django-watchfiles==0.1.1
+djangorestframework==3.14.0
+    # via
+    #   django-rest-framework
+    #   drf-spectacular
+    #   drf-standardized-errors
+drf-spectacular==0.27.1
+    # via drf-standardized-errors
+drf-standardized-errors==0.13.0
 executing==2.0.1
     # via stack-data
 filelock==3.13.1
@@ -35,9 +53,18 @@ identify==2.5.35
     # via pre-commit
 idna==3.6
     # via anyio
+inflection==0.5.1
+    # via
+    #   drf-spectacular
+    #   drf-standardized-errors
 ipython==8.22.1
 jedi==0.19.1
     # via ipython
+jsonschema==4.21.1
+    # via drf-spectacular
+jsonschema-specifications==2023.12.1
+    # via jsonschema
+markdown==3.5.2
 markdown-it-py==3.0.0
     # via rich
 matplotlib-inline==0.1.6
@@ -68,9 +95,21 @@ pygments==2.17.2
     # via
     #   ipython
     #   rich
+pytz==2024.1
+    # via djangorestframework
 pyyaml==6.0.1
-    # via pre-commit
+    # via
+    #   drf-spectacular
+    #   pre-commit
+referencing==0.33.0
+    # via
+    #   jsonschema
+    #   jsonschema-specifications
 rich==13.7.1
+rpds-py==0.18.0
+    # via
+    #   jsonschema
+    #   referencing
 ruff==0.3.0
 setuptools==69.1.1
     # via nodeenv
@@ -92,6 +131,8 @@ traitlets==5.14.1
     #   matplotlib-inline
 typing-extensions==4.10.0
     # via psycopg
+uritemplate==4.1.1
+    # via drf-spectacular
 virtualenv==20.25.1
     # via pre-commit
 watchfiles==0.21.0

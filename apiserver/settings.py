@@ -45,10 +45,14 @@ INSTALLED_APPS = [
     # letteranne apps
     "apiserver.users",
     # Third-party apps
+    "django_filters",
     "django_linear_migrations",
     "django_migration_linter",
     "django_version_checks",
     "django_watchfiles",
+    "drf_spectacular",
+    "drf_standardized_errors",
+    "rest_framework",
     # Django Contrib Apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -154,6 +158,46 @@ WSGI_APPLICATION = "apiserver.wsgi.application"
 
 
 AUTH_USER_MODEL = "users.User"
+
+DRF_STANDARDIZED_ERRORS = {
+    "ENABLE_IN_DEBUG_FOR_UNHANDLED_EXCEPTIONS": env.bool(
+        "DJANGO_ENABLE_API_RESPONSE_FOR_UNHANDLED_ERRORS", default=False
+    )
+}
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_standardized_errors.openapi.AutoSchema",
+    "EXCEPTION_HANDLER": "drf_standardized_errors.handler.exception_handler",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "letteranne API",
+    "DESCRIPTION": "Exchange e-letters with other people",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    # This will avoid multiple warnings raised by drf-spectacular due to the same set of error codes appearing in multiple operations.
+    "ENUM_NAME_OVERRIDES": {
+        "ValidationErrorEnum": "drf_standardized_errors.openapi_serializers.ValidationErrorEnum.choices",
+        "ClientErrorEnum": "drf_standardized_errors.openapi_serializers.ClientErrorEnum.choices",
+        "ServerErrorEnum": "drf_standardized_errors.openapi_serializers.ServerErrorEnum.choices",
+        "ErrorCode401Enum": "drf_standardized_errors.openapi_serializers.ErrorCode401Enum.choices",
+        "ErrorCode403Enum": "drf_standardized_errors.openapi_serializers.ErrorCode403Enum.choices",
+        "ErrorCode404Enum": "drf_standardized_errors.openapi_serializers.ErrorCode404Enum.choices",
+        "ErrorCode405Enum": "drf_standardized_errors.openapi_serializers.ErrorCode405Enum.choices",
+        "ErrorCode406Enum": "drf_standardized_errors.openapi_serializers.ErrorCode406Enum.choices",
+        "ErrorCode415Enum": "drf_standardized_errors.openapi_serializers.ErrorCode415Enum.choices",
+        "ErrorCode429Enum": "drf_standardized_errors.openapi_serializers.ErrorCode429Enum.choices",
+        "ErrorCode500Enum": "drf_standardized_errors.openapi_serializers.ErrorCode500Enum.choices",
+    },
+    "POSTPROCESSING_HOOKS": [
+        "drf_standardized_errors.openapi_hooks.postprocess_schema_enums"
+    ],
+}
 
 
 # 3. Third-party Apps Settings

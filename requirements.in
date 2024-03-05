@@ -1,8 +1,14 @@
 django>=5.0,<5.1
 django-environ
+django-filter
 django-linear-migrations
 django-migration-linter
+django-rest-framework
+drf-standardized-errors[openapi]
 django-version-checks
+drf-spectacular
+markdown
+
 psycopg[binary]
 
 # dev dependencies
@@ -10,5 +16,7 @@ django-debug-toolbar
 django-watchfiles
 ipython
 pre-commit
+pygments
+
 rich
 ruff
