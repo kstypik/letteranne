@@ -14,7 +14,7 @@ bootstrap *ARGS:
 
     if [ ! -f ".env" ]; then
         echo ".env created"
-        cp .env.example .env
+        cp .env.dev.example .env
     fi
 
     docker compose {{ ARGS }} build --force-rm
