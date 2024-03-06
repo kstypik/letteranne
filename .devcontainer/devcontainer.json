@@ -1,6 +1,6 @@
 {
   "name": "letteranne_dev",
-  "dockerComposeFile": ["../docker-compose.yml"],
+  "dockerComposeFile": ["../compose.yml"],
   "init": true,
   "mounts": [
     {
