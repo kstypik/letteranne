@@ -20,7 +20,45 @@ Below you can find links to the documentation of major projects used in this app
 
 ## Development
 
-TBD
+### Prerequisites
+
+- Install [Docker](https://docs.docker.com/get-docker/)
+- Install [just](https://github.com/casey/just) to run project tasks (optional, but recommended; if you don't install it you have to copy-paste commands from justfile to follow the rest of this section)
+- Install [asdf](https://asdf-vm.com/) to manager versions of Node.js and Python (optional)
+- Install [EditorConfig](https://editorconfig.org/) to keep coding style consistent (optional)
+
+### Setting up your local environment
+
+Clone the repo with git:
+
+```bash
+# by using https...
+git clone https://github.com/kstypik/letteranne.git
+# ... OR by using SSH
+git clone git@github.com:kstypik/letteranne.git
+```
+
+Move to the directory:
+
+```bash
+cd letteranne
+```
+
+With `just` installed, you can run the command below to set the local environment variables and build Docker images:
+
+```bash
+just setup
+```
+
+After the setup, you can start the containers by simply typing:
+
+```bash
+just up -d
+```
+
+**Note:** -d flag is for using the detached mode in Docker, so your terminal won't be connected to the container
+
+If everything was correct, your local application should be up and running under localhost:8000
 
 ## Production Deployment
 
