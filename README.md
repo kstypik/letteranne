@@ -1,5 +1,7 @@
 # letteranne
 
+[![100 - commitow](https://img.shields.io/badge/100-commitow-8CD08A?style=for-the-badge)](https://100commitow.pl)
+
 leteranne is a social networking app allowing users to exchange delayed messages. Invite your friends or meet new ones and immerse yourself in deep conversations.
 
 ## Technologies
