@@ -44,15 +44,26 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INSTALLED_APPS = [
     # letteranne apps
     "apiserver.users",
+    # sites framework has to be early
+    # because some migrations from other apps depend on
+    # those from this app
+    "django.contrib.sites",
     # Third-party apps
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "debug_toolbar",
     "django_filters",
     "django_linear_migrations",
     "django_migration_linter",
     "django_version_checks",
     "django_watchfiles",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
     "drf_spectacular",
     "drf_standardized_errors",
     "rest_framework",
+    "rest_framework.authtoken",
     # Django Contrib Apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -60,7 +71,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "debug_toolbar",
 ]
 
 
@@ -117,11 +127,16 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "apiserver.urls"
 
 SECRET_KEY = env("DJANGO_SECRET_KEY")
+
+# https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-SITE_ID
+# Required by django-allauth on which dj-rest-auth depends
+SITE_ID = 1
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
@@ -165,9 +180,17 @@ DRF_STANDARDIZED_ERRORS = {
     )
 }
 
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "jwtaccess",
+    "JWT_AUTH_REFRESH_COOKIE": "jwtrefresh",
+    "JWT_AUTH_HTTPONLY": True,
+}
+
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    "DEFAULT_AUTHENTICATION_CLASSES": ["dj_rest_auth.jwt_auth.JWTCookieAuthentication"],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ],
