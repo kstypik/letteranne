@@ -4,8 +4,10 @@ django-filter
 django-linear-migrations
 django-migration-linter
 django-rest-framework
-drf-standardized-errors[openapi]
 django-version-checks
+djangorestframework-simplejwt
+dj-rest-auth[with-social]
+drf-standardized-errors[openapi]
 drf-spectacular
 markdown
 
