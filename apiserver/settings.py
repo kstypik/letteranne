@@ -43,6 +43,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 INSTALLED_APPS = [
     # letteranne apps
+    "apiserver.letters",
     "apiserver.users",
     # sites framework has to be early
     # because some migrations from other apps depend on
