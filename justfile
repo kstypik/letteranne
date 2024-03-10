@@ -73,21 +73,24 @@ bootstrap *ARGS:
 @console:
     docker compose run --rm django /bin/bash
 
+@manage *ARGS:
+    docker compose run --rm django python manage.py {{ ARGS }}
+
 @makemigrations *ARGS:
-    docker compose run --rm django python manage.py makemigrations {{ ARGS }}
+    just manage makemigrations {{ ARGS }}
 
 @migrate *ARGS:
-    docker compose run --rm django python manage.py makemigrations {{ ARGS }}
+    just manage makemigrations {{ ARGS }}
 
 @showmigrations *ARGS:
-    docker compose run --rm django python manage.py showmigrations {{ ARGS }}
+    just manage showmigrations {{ ARGS }}
 
 # Run the shell management command
 @shell *ARGS:
-    docker compose run --rm django python manage.py shell {{ ARGS }}
+    just manage shell {{ ARGS }}
 
 # Create a Superuser
 @createsuperuser USERNAME EMAIL:
-    docker compose run --rm django python manage.py createsuperuser \
+    just manage createsuperuser \
         --username={{ USERNAME }} \
         --email={{ EMAIL }}
