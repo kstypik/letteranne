@@ -60,7 +60,7 @@ just up -d
 
 **Note:** -d flag is for using the detached mode in Docker, so your terminal won't be connected to the container
 
-If everything was correct, your local application should be up and running under localhost:8000
+If everything went smoothly, your local application should be up and running under localhost:8000
 
 ## Production Deployment
 
@@ -68,4 +68,4 @@ TBD
 
 ## Name origin
 
-The name came to my mind while reading L.M. Montgomery's book *Anne of Windy Poplars* which largely consists of letters Anne wrote to her fiancé Gilbert.
+The name came to my mind while reading L. M. Montgomery's book *Anne of Windy Poplars* which largely consists of letters Anne wrote to her fiancé Gilbert.
