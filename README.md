@@ -14,7 +14,6 @@ Below you can find links to the documentation of major projects used in this app
 - [PostgreSQL 16.2](https://www.postgresql.org/docs/16/index.html)
 - [Node.js 21.7](https://nodejs.org/docs/latest-v21.x/api/index.html)
 - [Typescript 5.1](https://www.typescriptlang.org/docs/)
-- [Remix 2.8](https://remix.run/docs/en/2.8)
 - [React 18.2](https://react.dev/learn)
 - [Mantine 7.6](https://mantine.dev/getting-started/)
 - [Docker](https://docs.docker.com/)
