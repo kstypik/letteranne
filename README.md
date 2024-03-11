@@ -2,7 +2,7 @@
 
 [![100 - commitow](https://img.shields.io/badge/100-commitow-8CD08A?style=for-the-badge)](https://100commitow.pl)
 
-leteranne is a social networking app allowing users to exchange delayed messages. Invite your friends or meet new ones and immerse yourself in deep conversations.
+leteranne is a social media app that lets people send intentionally delayed messages ("letters"). Invite friends or make new ones and immerse yourself in deep conversations.
 
 ## Technologies
 
