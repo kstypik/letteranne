@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential=12.9
 
 # Requirements are installed here to ensure they will be cached.
-COPY ./requirements.txt .
+COPY apiserver/requirements.txt .
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \
@@ -62,15 +62,14 @@ COPY --from=python-build-stage /usr/src/app/wheels  /wheels/
 RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
   && rm -rf /wheels/
 
-COPY ./containers/django.DEV.entrypoint.sh /entrypoint.sh
+COPY containers/django.DEV.entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r$//g' /entrypoint.sh && chmod +x /entrypoint.sh
 
-COPY ./containers/django.DEV.start.sh /start-dev.sh
+COPY containers/django.DEV.start.sh /start-dev.sh
 RUN sed -i 's/\r//' /start-dev.sh \
   && chmod +x /start-dev.sh
 
 # copy application code to WORKDIR
 COPY ./apiserver ${APP_HOME}
-COPY ./manage.py ${APP_HOME}}
 
 ENTRYPOINT ["/entrypoint.sh"]

@@ -5,7 +5,7 @@ import environ
 # 0. Setup
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 env = environ.Env()
 
@@ -43,8 +43,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 INSTALLED_APPS = [
     # letteranne apps
-    "apiserver.letters",
-    "apiserver.users",
+    "letters",
+    "users",
     # sites framework has to be early
     # because some migrations from other apps depend on
     # those from this app
@@ -131,7 +131,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-ROOT_URLCONF = "apiserver.urls"
+ROOT_URLCONF = "urls"
 
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
@@ -167,7 +167,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-WSGI_APPLICATION = "apiserver.wsgi.application"
+WSGI_APPLICATION = "wsgi.application"
 
 
 # 2. Django Contrib Settings

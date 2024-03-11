@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoAuthUserAdmin
 
-from apiserver.users import forms, models
+from users import forms, models
 
 
 @admin.register(models.User)
