@@ -94,3 +94,9 @@ bootstrap *ARGS:
     just manage createsuperuser \
         --username={{ USERNAME }} \
         --email={{ EMAIL }}
+
+@pipcompile:
+    uv pip compile apiserver/requirements.in -o apiserver/requirements.txt
+
+@pipsync:
+    uv pip sync apiserver/requirements.txt
