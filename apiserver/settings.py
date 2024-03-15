@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "corsheaders",
     "debug_toolbar",
     "django_filters",
     "django_linear_migrations",
@@ -122,6 +123,7 @@ MEDIA_URL = "media/"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -227,6 +229,11 @@ SPECTACULAR_SETTINGS = {
 # 3. Third-party Apps Settings
 
 
+# django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
+CORS_ALLOWED_ORIGINS = env.list("DJANGO_CORS_ALLOWED_ORIGINS")
+CORS_URLS_REGEX = r"^/api/.*$"
+
+# django-version-checks - https://github.com/adamchainz/django-version-checks
 VERSION_CHECKS = {
     "python": "==3.12.*",
     "postgresql": "~=16.2",
