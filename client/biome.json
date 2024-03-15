@@ -5,6 +5,7 @@
   },
   "linter": {
     "enabled": true,
+    "ignore": ["./letteranneApi.ts"],
     "rules": {
       "recommended": true
     }

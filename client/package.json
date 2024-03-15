@@ -23,12 +23,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.0",
+    "@rtk-query/codegen-openapi": "^1.2.0",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react": "^4.2.1",
+    "esbuild-runner": "^2.2.2",
     "postcss": "^8.4.35",
     "postcss-preset-mantine": "^1.13.0",
     "postcss-simple-vars": "^7.0.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2",
     "vite": "^5.1.6"
   }
