@@ -1,28 +1,41 @@
 django>=5.0,<5.1
 django-cors-headers
 django-environ
+django-extra-checks
 django-filter
 django-linear-migrations
 django-migration-linter
+django-queryhunter
 django-rest-framework
+django-seal
 django-version-checks
 djangorestframework-simplejwt
 dj-rest-auth[with-social]
 drf-standardized-errors[openapi]
 drf-spectacular
 markdown
-
 psycopg[binary]
+urlman
 
 # dev dependencies
+factory_boy
 django-debug-toolbar
+django-perf-rec
+django-test-plus
 django-watchfiles
 ipython
+pdbpp
 pre-commit
 pygments
 pytest
+pytest-cov
 pytest-django
+pytest-factoryboy
+pytest-reverse
+pytest-sugar
+pytest-watcher
 pytest-xdist
+time-machine
 
 rich
 ruff
