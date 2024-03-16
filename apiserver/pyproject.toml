@@ -118,3 +118,11 @@ docstring-code-line-length = "dynamic"
 [tool.ruff.lint.per-file-ignores]
 "*/admin.py" = ["RUF012"]
 "*/migrations/*.py" = ["RUF012"]
+"*/tests.py" = ["S101"]
+"*/test_*.py" = ["S101"]
+
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--ds=settings --reuse-db"
+python_files = ["tests.py", "test_*.py"]

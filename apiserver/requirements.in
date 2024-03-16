@@ -20,6 +20,9 @@ django-watchfiles
 ipython
 pre-commit
 pygments
+pytest
+pytest-django
+pytest-xdist
 
 rich
 ruff

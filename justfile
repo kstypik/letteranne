@@ -100,3 +100,6 @@ bootstrap *ARGS:
 
 @pipsync:
     uv pip sync apiserver/requirements.txt
+
+@pytest *ARGS:
+    docker compose run --rm django pytest {{ ARGS }}
