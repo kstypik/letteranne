@@ -6,9 +6,9 @@ django-filter
 django-linear-migrations
 django-migration-linter
 django-queryhunter
-django-rest-framework
 django-seal
 django-version-checks
+djangorestframework>=3.15,<3.16
 djangorestframework-simplejwt
 dj-rest-auth[with-social]
 drf-standardized-errors[openapi]

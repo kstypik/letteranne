@@ -63,15 +63,13 @@ django-linear-migrations==2.12.0
 django-migration-linter==5.0.0
 django-perf-rec==4.25.0
 django-queryhunter==0.1.6
-django-rest-framework==0.1.0
 django-seal==1.6.1
 django-test-plus==2.2.3
 django-version-checks==1.11.0
 django-watchfiles==0.1.1
-djangorestframework==3.14.0
+djangorestframework==3.15.0
     # via
     #   dj-rest-auth
-    #   django-rest-framework
     #   djangorestframework-simplejwt
     #   drf-spectacular
     #   drf-standardized-errors
@@ -181,8 +179,6 @@ python-dateutil==2.9.0.post0
     #   time-machine
 python3-openid==3.2.0
     # via django-allauth
-pytz==2024.1
-    # via djangorestframework
 pyyaml==6.0.1
     # via
     #   django-perf-rec
