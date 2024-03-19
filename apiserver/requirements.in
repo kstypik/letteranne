@@ -21,9 +21,13 @@ urlman
 factory_boy
 django-debug-toolbar
 django-perf-rec
+django-stubs
+django-stubs-ext
+djangorestframework-stubs
 django-test-plus
 django-watchfiles
 ipython
+mypy
 pdbpp
 pre-commit
 pygments

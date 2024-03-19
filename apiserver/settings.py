@@ -1,9 +1,14 @@
 from pathlib import Path
 
+import django_stubs_ext
 import environ
 
 # 0. Setup
 
+
+# Monkeypatching Django, so stubs will work for all generics
+# https://github.com/typeddjango/django-stubs#i-cannot-use-queryset-or-manager-with-type-annotations
+django_stubs_ext.monkeypatch()
 
 BASE_DIR = Path(__file__).resolve().parent
 

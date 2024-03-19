@@ -14,5 +14,6 @@
     }
   },
   "yaml.format.enable": true,
-  "biome.lspBin": "client/node_modules/@biomejs/biome/bin/biome"
+  "biome.lspBin": "client/node_modules/@biomejs/biome/bin/biome",
+  "mypy-type-checker.args": ["--config-file=apiserver/pyproject.toml"]
 }

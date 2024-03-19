@@ -103,3 +103,6 @@ bootstrap *ARGS:
 
 @pytest *ARGS:
     docker compose run --rm django pytest {{ ARGS }}
+
+@mypy *ARGS:
+    docker compose run --rm django mypy {{ ARGS }}
