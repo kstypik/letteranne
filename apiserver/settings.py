@@ -23,7 +23,7 @@ ENVIRONMENT_TYPE = env("DJANGO_ENVIRONMENT_TYPE", default="prod")
 # 1. Django Core Settings
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: list[str] = []
 
 AUTH_PASSWORD_VALIDATORS = [
     {

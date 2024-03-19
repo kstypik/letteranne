@@ -31,7 +31,7 @@ class UserManager(BaseUserManager):
         )
         username = GlobalUserModel.normalize_username(username)
         user = self.model(username=username, email=email, **extra_fields)
-        user.password = make_password(password)
+        user.password = make_password(password)  # type: ignore[attr-defined]
         user.save(using=self._db)
         return user
 
@@ -63,7 +63,7 @@ class UserManager(BaseUserManager):
         obj=None,
     ):
         if backend is None:
-            backends = auth._get_backends(return_tuples=True)  # noqa: SLF001
+            backends = auth._get_backends(return_tuples=True)  # type: ignore[attr-defined] # noqa: SLF001
             if len(backends) == 1:
                 backend, _ = backends[0]
             else:
