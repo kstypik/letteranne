@@ -42,6 +42,13 @@ services:
     volumes:
       - postgres_data_DEV:/var/lib/postgresql/data
 
+  mailcrab:
+    image: marlonb/mailcrab:latest
+    ports:
+      - '1080:1080'
+      - '1025:1025'
+    networks: [default]
+
 volumes:
   postgres_data_DEV: {}
   media_DEV: {}
