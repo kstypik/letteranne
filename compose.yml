@@ -42,11 +42,22 @@ services:
     volumes:
       - postgres_data_DEV:/var/lib/postgresql/data
 
+  docs:
+    container_name: letteranne_docs_DEV
+    image: docker.io/squidfunk/mkdocs-material
+    command: ["serve", "--dev-addr=0.0.0.0:4000"]
+    ports:
+      - 4000:4000
+    volumes:
+    - ./docs:/docs
+    stdin_open: true
+    tty: true
+
   mailcrab:
     image: marlonb/mailcrab:latest
     ports:
-      - '1080:1080'
-      - '1025:1025'
+      - 1080:1080
+      - 1025:1025
     networks: [default]
 
 volumes:
