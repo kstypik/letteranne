@@ -54,7 +54,7 @@ services:
     tty: true
 
   mailcrab:
-    image: marlonb/mailcrab:latest
+    image: docker.io/marlonb/mailcrab:latest
     ports:
       - 1080:1080
       - 1025:1025
