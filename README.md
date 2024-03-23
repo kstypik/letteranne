@@ -18,6 +18,7 @@ Below you can find links to the documentation of major projects used in this app
 - [Mantine 7.6](https://mantine.dev/getting-started/)
 - [Docker](https://docs.docker.com/)
 - [DevContainers](https://containers.dev/)
+- [MkDocs](https://www.mkdocs.org/user-guide/)
 
 ## Development
 
