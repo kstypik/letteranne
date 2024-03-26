@@ -27,7 +27,7 @@ Below you can find links to the documentation of major projects used in this app
 - Install [Docker](https://docs.docker.com/get-docker/)
 - Install [just](https://github.com/casey/just) to run project tasks (optional, but recommended; if you don't install it you have to copy-paste commands from justfile to follow the rest of this section)
 - Install [pnpm](https://pnpm.io/installation) to manage frontend packages
-- Install [asdf](https://asdf-vm.com/) to manage versions of Node.js and Python (optional)
+- Install [mise](https://mise.jdx.dev/) to manage versions of Node.js and Python (optional)
 - Install [EditorConfig](https://editorconfig.org/) to keep coding style consistent (optional)
 
 ### Setting up your local environment
