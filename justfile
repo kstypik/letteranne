@@ -16,7 +16,7 @@ bootstrap *ARGS:
         echo ".env created"
         cp .env.dev.example .env
     fi
-
+    mise install
     docker compose {{ ARGS }} build --force-rm
 
 # Builds the Docker Images with no optional arguments
