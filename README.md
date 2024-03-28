@@ -26,6 +26,7 @@ Below you can find links to the documentation of major projects used in this app
 
 - Install [Docker](https://docs.docker.com/get-docker/)
 - Install [just](https://github.com/casey/just) to run project tasks (optional, but recommended; if you don't install it you have to copy-paste commands from justfile to follow the rest of this section)
+- Install [uv](https://github.com/astral-sh/uv) to manage Python's virtual environments and packages
 - Install [pnpm](https://pnpm.io/installation) to manage frontend packages
 - Install [mise](https://mise.jdx.dev/) to manage versions of Node.js and Python (optional)
 - Install [EditorConfig](https://editorconfig.org/) to keep coding style consistent (optional)
@@ -49,7 +50,7 @@ cd letteranne
 
 #### Backend
 
-With `just` installed, you can run the command below to set the local environment variables and build Docker images:
+With `just` installed, you can run the command below to set the local environment variables, install Python & Node on your machine through mise and build Docker images:
 
 ```bash
 just setup
