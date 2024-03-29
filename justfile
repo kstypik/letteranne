@@ -80,7 +80,7 @@ bootstrap *ARGS:
     just manage makemigrations {{ ARGS }}
 
 @migrate *ARGS:
-    just manage makemigrations {{ ARGS }}
+    just manage migrate {{ ARGS }}
 
 @showmigrations *ARGS:
     just manage showmigrations {{ ARGS }}
