@@ -88,7 +88,6 @@ pnpm run dev
 
 Your local frontend application should be running under localhost:5173
 
-
 ## Production Deployment
 
 TBD
