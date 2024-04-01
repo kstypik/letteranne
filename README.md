@@ -25,11 +25,14 @@ Below you can find links to the documentation of major projects used in this app
 ### Prerequisites
 
 - Install [Docker](https://docs.docker.com/get-docker/)
-- Install [just](https://github.com/casey/just) to run project tasks (optional, but recommended; if you don't install it you have to copy-paste commands from justfile to follow the rest of this section)
 - Install [uv](https://github.com/astral-sh/uv) to manage Python's virtual environments and packages
 - Install [pnpm](https://pnpm.io/installation) to manage frontend packages
-- Install [mise](https://mise.jdx.dev/) to manage versions of Node.js and Python (optional)
-- Install [EditorConfig](https://editorconfig.org/) to keep coding style consistent (optional)
+
+Optional dependencies:
+
+- Recommended: Install [just](https://github.com/casey/just) to run project tasks (optional, but recommended; if you don't install it you have to copy-paste commands from justfile to follow the rest of this section)
+- Install [mise](https://mise.jdx.dev/) to manage versions of Node.js and Python
+- Install [EditorConfig](https://editorconfig.org/) to keep coding style consistent
 
 ### Setting up your local environment
 
@@ -56,13 +59,24 @@ With `just` installed, you can run the command below to set the local environmen
 just setup
 ```
 
+It might be useful to create a Python virtual environment on your local machine with all the project's dependencies so they can be used by your IDE:
+
+```bash
+uv venv
+
+# On macOS and Linux...
+source .venv/bin/activate
+# ... OR on Windows.
+.venv\Scripts\activate
+
+uv pip install --requirement apiclient/requirements.txt
+```
+
 After the setup, you can start the containers by simply typing:
 
 ```bash
-just up -d
+just up --detached
 ```
-
-**Note:** -d flag is for using the detached mode in Docker, so your terminal won't be connected to the container
 
 If everything went smoothly, your local application should be up and running under localhost:8000
 
@@ -86,7 +100,7 @@ Run the development server:
 pnpm run dev
 ```
 
-Your local frontend application should be running under localhost:5173
+Your local frontend application should be running under localhost:5173 (note if the port is already being used, Vite will automatically try the next available port)
 
 ## Production Deployment
 
