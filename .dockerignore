@@ -10,3 +10,7 @@
 .venv
 .git
 venv
+.docs
+docs
+.tool-versions
+.vscode

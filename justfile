@@ -96,10 +96,10 @@ bootstrap *ARGS:
         --email={{ EMAIL }}
 
 @pipcompile:
-    uv pip compile apiserver/requirements.in -o apiserver/requirements.txt
+    uv pip compile requirements.in -o requirements.txt
 
 @pipsync:
-    uv pip sync apiserver/requirements.txt
+    uv pip sync requirements.txt
 
 @pytest *ARGS:
     docker compose run --rm django pytest {{ ARGS }}

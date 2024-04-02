@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential=12.9
 
 # Requirements are installed here to ensure they will be cached.
-COPY apiserver/requirements.txt .
+COPY requirements.txt .
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \
@@ -72,6 +72,6 @@ RUN sed -i 's/\r//' /start-dev.sh \
   && chmod +x /start-dev.sh
 
 # copy application code to WORKDIR
-COPY ./apiserver ${APP_HOME}
+COPY . ${APP_HOME}
 
 ENTRYPOINT ["/entrypoint.sh"]

@@ -13,9 +13,6 @@ Below you can find links to the documentation of major projects used in this app
 - [Django REST Framework 3.15](https://www.django-rest-framework.org/)
 - [PostgreSQL 16.2](https://www.postgresql.org/docs/16/index.html)
 - [Node.js 21.7](https://nodejs.org/docs/latest-v21.x/api/index.html)
-- [Typescript 5.1](https://www.typescriptlang.org/docs/)
-- [React 18.2](https://react.dev/learn)
-- [Mantine 7.6](https://mantine.dev/getting-started/)
 - [Docker](https://docs.docker.com/)
 - [DevContainers](https://containers.dev/)
 - [MkDocs](https://www.mkdocs.org/user-guide/)
@@ -26,11 +23,10 @@ Below you can find links to the documentation of major projects used in this app
 
 - Install [Docker](https://docs.docker.com/get-docker/)
 - Install [uv](https://github.com/astral-sh/uv) to manage Python's virtual environments and packages
-- Install [pnpm](https://pnpm.io/installation) to manage frontend packages
 
 Optional dependencies:
 
-- Recommended: Install [just](https://github.com/casey/just) to run project tasks (optional, but recommended; if you don't install it you have to copy-paste commands from justfile to follow the rest of this section)
+- **Recommended**: Install [just](https://github.com/casey/just) to run project tasks (optional, but recommended; if you don't install it you have to copy-paste commands from justfile to follow the rest of this section)
 - Install [mise](https://mise.jdx.dev/) to manage versions of Node.js and Python
 - Install [EditorConfig](https://editorconfig.org/) to keep coding style consistent
 
@@ -51,8 +47,6 @@ Move to directory:
 cd letteranne
 ```
 
-#### Backend
-
 With `just` installed, you can run the command below to set the local environment variables, install Python & Node on your machine through mise and build Docker images:
 
 ```bash
@@ -69,7 +63,7 @@ source .venv/bin/activate
 # ... OR on Windows.
 .venv\Scripts\activate
 
-uv pip install --requirement apiclient/requirements.txt
+uv pip install --requirement letteranne/requirements.txt
 ```
 
 After the setup, you can start the containers by simply typing:
@@ -79,28 +73,6 @@ just up --detached
 ```
 
 If everything went smoothly, your local application should be up and running under localhost:8000
-
-#### Frontend
-
-Move to directory:
-
-```bash
-cd client
-```
-
-Install dependencies:
-
-```bash
-pnpm install
-```
-
-Run the development server:
-
-```bash
-pnpm run dev
-```
-
-Your local frontend application should be running under localhost:5173 (note if the port is already being used, Vite will automatically try the next available port)
 
 ## Production Deployment
 
