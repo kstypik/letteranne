@@ -25,6 +25,13 @@ ENVIRONMENT_TYPE = env("DJANGO_ENVIRONMENT_TYPE", default="prod")
 
 ALLOWED_HOSTS: list[str] = []
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -50,12 +57,17 @@ INSTALLED_APPS = [
     # letteranne apps
     "letteranne.letters",
     "letteranne.users",
+    # Third-party apps
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "debug_toolbar",
+    "django_browser_reload",
     "django_filters",
     "django_linear_migrations",
     "django_migration_linter",
     "django_version_checks",
-    "django_watchfiles",
+    # "django_watchfiles", # currently unused because incompatibility with browser reload
     # Django Contrib Apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -119,6 +131,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "letteranne.urls"
@@ -130,6 +144,13 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "static-collected"
 
 STATIC_URL = "static/"
+
+default_loaders = [
+    "django.template.loaders.filesystem.Loader",
+    "django.template.loaders.app_directories.Loader",
+]
+
+cached_loaders = [("django.template.loaders.cached.Loader", default_loaders)]
 
 TEMPLATES = [
     {

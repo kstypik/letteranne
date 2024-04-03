@@ -1,4 +1,5 @@
 django>=5.0,<5.1
+django-allauth
 django-environ
 django-extra-checks
 django-filter
@@ -11,6 +12,7 @@ psycopg[binary]
 urlman
 
 # dev dependencies
+django-browser-reload
 django-debug-toolbar
 django-perf-rec
 django-stubs
