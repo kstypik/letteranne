@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% block title %}{% endblock title %} letteranne</title>
+    <title>
+      {% block title %}
+        letteranne
+      {% endblock %}
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
   </head>
   <body>
-    {% block content %}{% endblock content %}
+    {% include '_includes/navbar.html' %}
+    {% block content %}
+
+    {% endblock %}
   </body>
 </html>

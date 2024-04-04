@@ -1,6 +1,9 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}Dashboard{% endblock title %}
+{% block title %}
+  Dashboard &mdash; {{ block.super }}
+{% endblock %}
 
 {% block content %}
-{% endblock content %}
+
+{% endblock %}
