@@ -10,7 +10,7 @@ Below you can find links to the documentation of major projects used in this app
 
 - [Python 3.12](https://docs.python.org/3.12/)
 - [Django 5.0](https://docs.djangoproject.com/en/5.0/)
-- [Django REST Framework 3.15](https://www.django-rest-framework.org/)
+- [Django REST Framework](https://www.django-rest-framework.org/)
 - [PostgreSQL 16.2](https://www.postgresql.org/docs/16/index.html)
 - [Node.js 21.7](https://nodejs.org/docs/latest-v21.x/api/index.html)
 - [React 18](https://react.dev/)
