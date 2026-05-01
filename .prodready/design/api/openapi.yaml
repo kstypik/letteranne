@@ -1,0 +1,697 @@
+openapi: 3.1.0
+info:
+  title: Letteranne API
+  version: 1.0.0
+  description: >
+    Headless API for delayed digital letter exchange, open letters, discovery, profiles,
+    postcard collections, and basic moderation.
+
+servers:
+  - url: http://localhost:8000/api
+    description: Development
+  - url: https://api.letteranne.example
+    description: Production
+
+tags:
+  - name: auth
+    description: Registration and session authentication
+  - name: profiles
+    description: User profile management
+  - name: users
+    description: User discovery and lookup
+  - name: letters
+    description: Private and open letters
+  - name: postcards
+    description: Postcard collection and attachment features
+  - name: moderation
+    description: Basic moderation reporting
+
+paths:
+  /auth/register:
+    post:
+      tags: [auth]
+      summary: Register new user
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUserResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /auth/login:
+    post:
+      tags: [auth]
+      summary: Authenticate user session
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUserResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /auth/logout:
+    post:
+      tags: [auth]
+      summary: End user session
+      operationId: logoutUser
+      security:
+        - sessionAuth: []
+      responses:
+        '204':
+          description: Logged out
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /profiles/me:
+    get:
+      tags: [profiles]
+      summary: Get own profile
+      operationId: getMyProfile
+      security:
+        - sessionAuth: []
+      responses:
+        '200':
+          description: Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      tags: [profiles]
+      summary: Update own profile
+      operationId: updateMyProfile
+      security:
+        - sessionAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdateRequest'
+      responses:
+        '200':
+          description: Updated profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /users/by-id/{displayId}:
+    get:
+      tags: [users]
+      summary: Find user by public display ID
+      operationId: getUserByDisplayId
+      security:
+        - sessionAuth: []
+      parameters:
+        - name: displayId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicUser'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users/discover:
+    get:
+      tags: [users]
+      summary: Get randomized user discovery list
+      operationId: discoverUsers
+      security:
+        - sessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Discovery list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PublicUser'
+                required: [items]
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /letters:
+    get:
+      tags: [letters]
+      summary: List current user's letter history
+      operationId: listMyLetters
+      security:
+        - sessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - name: visibility
+          in: query
+          schema:
+            $ref: '#/components/schemas/LetterVisibility'
+      responses:
+        '200':
+          description: Paginated letter list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LetterListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags: [letters]
+      summary: Create a private or open letter
+      operationId: createLetter
+      security:
+        - sessionAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LetterCreateRequest'
+      responses:
+        '201':
+          description: Letter created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Letter'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /letters/{letterId}:
+    get:
+      tags: [letters]
+      summary: Get letter details
+      operationId: getLetter
+      security:
+        - sessionAuth: []
+      parameters:
+        - name: letterId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Letter detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Letter'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /letters/open:
+    get:
+      tags: [letters]
+      summary: List public open letters
+      operationId: listOpenLetters
+      security:
+        - sessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Open-letter feed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LetterListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /letters/{letterId}/replies:
+    post:
+      tags: [letters]
+      summary: Reply to an open letter
+      operationId: replyToOpenLetter
+      security:
+        - sessionAuth: []
+      parameters:
+        - name: letterId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                  minLength: 1
+                subject:
+                  type: string
+              required: [body]
+      responses:
+        '201':
+          description: Reply created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Letter'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /postcards/collection:
+    get:
+      tags: [postcards]
+      summary: Get current user's postcard collection
+      operationId: listMyPostcards
+      security:
+        - sessionAuth: []
+      responses:
+        '200':
+          description: Owned postcards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserPostcard'
+                required: [items]
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /letters/{letterId}/postcard:
+    post:
+      tags: [postcards]
+      summary: Attach owned postcard to a letter
+      operationId: attachPostcardToLetter
+      security:
+        - sessionAuth: []
+      parameters:
+        - name: letterId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userPostcardId:
+                  type: string
+                  format: uuid
+              required: [userPostcardId]
+      responses:
+        '201':
+          description: Postcard attached
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LetterPostcard'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /moderation/reports:
+    post:
+      tags: [moderation]
+      summary: Report abusive open-letter content
+      operationId: createModerationReport
+      security:
+        - sessionAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                letterId:
+                  type: string
+                  format: uuid
+                reason:
+                  type: string
+                  minLength: 5
+              required: [letterId, reason]
+      responses:
+        '201':
+          description: Report submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModerationReport'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  securitySchemes:
+    sessionAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: Resource conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    RegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+      required: [email, password]
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+      required: [email, password]
+
+    AuthUserResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      required: [user]
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        displayId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, email, displayId, createdAt]
+
+    PublicUser:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        displayId:
+          type: string
+        profile:
+          $ref: '#/components/schemas/Profile'
+      required: [id, displayId]
+
+    Profile:
+      type: object
+      properties:
+        bio:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+      required: []
+
+    ProfileUpdateRequest:
+      type: object
+      properties:
+        bio:
+          type: string
+          maxLength: 500
+        avatarUrl:
+          type: string
+      additionalProperties: false
+
+    LetterVisibility:
+      type: string
+      enum: [private, open]
+
+    LetterStatus:
+      type: string
+      enum: [queued, delivered, hidden_moderation]
+
+    Letter:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        senderId:
+          type: string
+          format: uuid
+        recipientId:
+          type: string
+          format: uuid
+          nullable: true
+        parentLetterId:
+          type: string
+          format: uuid
+          nullable: true
+        visibility:
+          $ref: '#/components/schemas/LetterVisibility'
+        status:
+          $ref: '#/components/schemas/LetterStatus'
+        subject:
+          type: string
+          nullable: true
+        body:
+          type: string
+        scheduledFor:
+          type: string
+          format: date-time
+        deliveredAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - senderId
+        - visibility
+        - status
+        - body
+        - scheduledFor
+        - createdAt
+
+    LetterCreateRequest:
+      type: object
+      properties:
+        visibility:
+          $ref: '#/components/schemas/LetterVisibility'
+        recipientId:
+          type: string
+          format: uuid
+          nullable: true
+        subject:
+          type: string
+        body:
+          type: string
+          minLength: 1
+        scheduledFor:
+          type: string
+          format: date-time
+      required: [visibility, body, scheduledFor]
+
+    LetterListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Letter'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required: [items, page, limit, total]
+
+    UserPostcard:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        postcardId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        imageUrl:
+          type: string
+        unlockedAt:
+          type: string
+          format: date-time
+      required: [id, postcardId, title, imageUrl, unlockedAt]
+
+    LetterPostcard:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        letterId:
+          type: string
+          format: uuid
+        userPostcardId:
+          type: string
+          format: uuid
+      required: [id, letterId, userPostcardId]
+
+    ModerationReport:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        letterId:
+          type: string
+          format: uuid
+        reporterUserId:
+          type: string
+          format: uuid
+        reason:
+          type: string
+        status:
+          type: string
+          enum: [open, reviewed, dismissed, actioned]
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, letterId, reporterUserId, reason, status, createdAt]
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required: [code, message]
+
