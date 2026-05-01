@@ -1,0 +1,40 @@
+# Git
+.git
+.gitignore
+
+# Dependencies
+node_modules
+**/node_modules
+__pycache__
+*.pyc
+.venv
+vendor/
+
+# Build
+.next
+dist
+build
+.pytest_cache
+.mypy_cache
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea
+.vscode
+*.swp
+
+# Testing
+coverage
+.nyc_output
+playwright-report
+
+# Misc
+.DS_Store
+
+# ProdReady artifacts
+.prodready
+
