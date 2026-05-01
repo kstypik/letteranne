@@ -157,7 +157,7 @@ Publish backend OpenAPI and configure frontend Orval generation.
 ## Sprint 2: Core Letter and Profile Features
 
 ### TASK-010: Frontend app shell and auth screens
-**Priority**: P0 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Build mobile-first shell, sign-up/login screens, and protected route behavior.
@@ -174,7 +174,7 @@ Build mobile-first shell, sign-up/login screens, and protected route behavior.
 ---
 
 ### TASK-011: Session/CSRF frontend integration
-**Priority**: P0 | **Estimate**: 2h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 2h | **Status**: Done
 
 **Description**:  
 Wire API client for cookie credentials and CSRF handling.

@@ -1,0 +1,41 @@
+import { createRoute, Navigate } from "@tanstack/react-router";
+
+import { useAuth } from "../auth/auth-context";
+import { rootRoute } from "./root";
+
+export const appRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/app",
+  component: AppHome
+});
+
+export const getAppGateState = (isBootstrapping: boolean, isAuthenticated: boolean) => {
+  if (isBootstrapping) {
+    return "loading";
+  }
+  if (!isAuthenticated) {
+    return "redirect";
+  }
+  return "ready";
+};
+
+function AppHome() {
+  const auth = useAuth();
+  const state = getAppGateState(auth.isBootstrapping, auth.isAuthenticated);
+
+  if (state === "loading") {
+    return <p>Loading session...</p>;
+  }
+
+  if (state === "redirect") {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <section>
+      <h2>Your letter space</h2>
+      <p>Signed in as {auth.email}</p>
+    </section>
+  );
+}
+

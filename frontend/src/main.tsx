@@ -3,6 +3,7 @@ import { RouterProvider } from "@tanstack/react-router";
 import React from "react";
 import { createRoot } from "react-dom/client";
 
+import { AuthProvider } from "./auth/auth-context";
 import { router } from "./router";
 
 const queryClient = new QueryClient();
@@ -15,7 +16,9 @@ if (!rootElement) {
 createRoot(rootElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

@@ -3,6 +3,7 @@ import { RouterProvider } from "@tanstack/react-router";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
+import { AuthProvider } from "../auth/auth-context";
 import { router } from "../router";
 
 describe("app bootstrap", () => {
@@ -11,12 +12,16 @@ describe("app bootstrap", () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
       </QueryClientProvider>
     );
 
     expect(await screen.findByText("Letteranne")).toBeInTheDocument();
-    expect(await screen.findByText("Welcome to Letteranne.")).toBeInTheDocument();
+    expect(
+      await screen.findByText("Welcome to Letteranne. Sign up or log in to continue.")
+    ).toBeInTheDocument();
   });
 });
 
