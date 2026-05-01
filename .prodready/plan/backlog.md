@@ -71,7 +71,7 @@ Initialize React TypeScript strict SPA with TanStack Router/Query baseline.
 ---
 
 ### TASK-005: PostgreSQL + Django DB connection and migrations
-**Priority**: P0 | **Estimate**: 2h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 2h | **Status**: Done
 
 **Description**:  
 Configure Django database settings and verify migrations workflow.
@@ -87,7 +87,7 @@ Configure Django database settings and verify migrations workflow.
 ---
 
 ### TASK-006: CI baseline (lint + tests)
-**Priority**: P0 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Create GitHub Actions workflow for backend and frontend quality checks.
@@ -104,7 +104,7 @@ Create GitHub Actions workflow for backend and frontend quality checks.
 ---
 
 ### TASK-007: Headless auth integration with django-allauth
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Implement register/login/logout endpoints with session cookies.
@@ -121,7 +121,7 @@ Implement register/login/logout endpoints with session cookies.
 ---
 
 ### TASK-008: Core data models and migrations
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Implement entities from data model in Django ORM and create migrations.
@@ -138,7 +138,7 @@ Implement entities from data model in Django ORM and create migrations.
 ---
 
 ### TASK-009: OpenAPI generation and Orval contract pipeline
-**Priority**: P0 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Publish backend OpenAPI and configure frontend Orval generation.

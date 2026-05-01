@@ -32,6 +32,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
+          cache: "pip"
 
       - name: Install backend dependencies
         run: |
@@ -62,6 +63,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: "pnpm"
+          cache-dependency-path: frontend/pnpm-lock.yaml
 
       - name: Enable corepack
         run: corepack enable
@@ -100,5 +103,15 @@ jobs:
             pnpm run test --if-present
           else
             echo "Skip tests - frontend not scaffolded"
+          fi
+
+      - name: OpenAPI client generation consistency
+        run: |
+          if [ -f frontend/orval.config.ts ]; then
+            cd frontend
+            pnpm run api:generate
+            git diff --exit-code src/api/client.ts
+          else
+            echo "Skip OpenAPI consistency check - orval config not present"
           fi
 

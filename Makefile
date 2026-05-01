@@ -1,4 +1,4 @@
-.PHONY: dev dev-build dev-down dev-logs test lint format typecheck db-shell db-reset clean help
+.PHONY: dev dev-build dev-down dev-logs test lint format typecheck migrate makemigrations db-shell db-reset clean help
 
 # ===========================================
 # Development
@@ -39,6 +39,12 @@ format: ## Format code
 typecheck: ## Run static type checks
 	@if [ -d backend ]; then docker compose run --rm backend bash -lc "python -m pip show mypy >/dev/null 2>&1 && mypy . || echo 'mypy not installed yet'"; else echo "No backend yet"; fi
 	@if [ -f frontend/package.json ]; then docker compose run --rm frontend sh -lc "pnpm run typecheck --if-present"; else echo "No frontend yet"; fi
+
+migrate: ## Run backend database migrations
+	docker compose run --rm backend bash -lc "cd /app/backend && python manage.py migrate"
+
+makemigrations: ## Create backend migration files
+	docker compose run --rm backend bash -lc "cd /app/backend && python manage.py makemigrations"
 
 # ===========================================
 # Database

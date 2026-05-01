@@ -39,6 +39,19 @@ make dev
 # TODO: add backend dependency install + migrate commands
 ```
 
+### Database Readiness (dev/test)
+
+Use Docker services as the source of truth for local DB readiness:
+
+```bash
+make dev          # starts backend, frontend, postgres
+make migrate      # applies Django migrations against configured DATABASE_URL
+make db-shell     # opens psql for manual verification
+```
+
+For test execution, set `DJANGO_SETTINGS_MODULE=config.settings.test` and a test `DATABASE_URL`
+(CI already provides this in `.github/workflows/ci.yml`).
+
 ### Frontend Setup (placeholder)
 
 ```bash
@@ -49,4 +62,15 @@ make dev
 
 ```bash
 # TODO: add backend/frontend test commands
+```
+
+## API Contract Generation
+
+- Backend source of truth: `.prodready/design/api/openapi.yaml`
+- Backend schema endpoint: `GET /openapi`
+- Frontend typed client generation:
+
+```bash
+cd frontend
+pnpm api:generate
 ```

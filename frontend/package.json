@@ -11,7 +11,8 @@
     "test:watch": "vitest",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "api:generate": "orval --config orval.config.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.59.0",
@@ -29,6 +30,7 @@
     "eslint": "^9.14.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "prettier": "^3.3.3",
+    "orval": "^7.3.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",
     "vitest": "^2.1.4"
