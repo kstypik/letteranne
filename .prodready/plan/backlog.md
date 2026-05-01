@@ -191,7 +191,7 @@ Wire API client for cookie credentials and CSRF handling.
 ---
 
 ### TASK-012: Typed API hooks and query key conventions
-**Priority**: P1 | **Estimate**: 2h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 2h | **Status**: Done
 
 **Description**:  
 Create reusable TanStack Query hooks over generated Orval client.
@@ -207,7 +207,7 @@ Create reusable TanStack Query hooks over generated Orval client.
 ---
 
 ### TASK-013: Profile API (`GET/PATCH /profiles/me`)
-**Priority**: P1 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Implement profile retrieval and update endpoints with validation.
@@ -224,7 +224,7 @@ Implement profile retrieval and update endpoints with validation.
 ---
 
 ### TASK-014: Private letter create/read APIs
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Implement private letter creation, detail read, and ownership checks.
@@ -241,7 +241,7 @@ Implement private letter creation, detail read, and ownership checks.
 ---
 
 ### TASK-015: Letter composer UI + delayed send flow
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Build writing-focused compose experience and submit private letters.
@@ -258,7 +258,7 @@ Build writing-focused compose experience and submit private letters.
 ---
 
 ### TASK-016: Letter history APIs and pagination
-**Priority**: P0 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Implement history listing with pagination and visibility filters.
@@ -275,7 +275,7 @@ Implement history listing with pagination and visibility filters.
 ---
 
 ### TASK-017: Letter history UI and detail screens
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Build list and detail thread screens for private/open letters.
@@ -294,7 +294,7 @@ Build list and detail thread screens for private/open letters.
 ## Sprint 3: Discovery, Open Letters, Postcards, Moderation
 
 ### TASK-018: User lookup and discovery APIs
-**Priority**: P0 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Implement `GET /users/by-id/{displayId}` and `GET /users/discover`.
@@ -311,7 +311,7 @@ Implement `GET /users/by-id/{displayId}` and `GET /users/discover`.
 ---
 
 ### TASK-019: Profile UI editing and public profile preview
-**Priority**: P1 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Implement user profile screens and editing flow.
@@ -328,7 +328,7 @@ Implement user profile screens and editing flow.
 ---
 
 ### TASK-020: Discovery UI and user lookup interactions
-**Priority**: P1 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Build screens for finding users by ID and browsing random users.
@@ -345,7 +345,7 @@ Build screens for finding users by ID and browsing random users.
 ---
 
 ### TASK-021: Open letters + reply APIs
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Implement open-letter feed, publishing, and reply endpoints.
@@ -362,7 +362,7 @@ Implement open-letter feed, publishing, and reply endpoints.
 ---
 
 ### TASK-022: Delivery scheduler and Django task processing
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Implement asynchronous delivery worker for queued letters.
@@ -379,7 +379,7 @@ Implement asynchronous delivery worker for queued letters.
 ---
 
 ### TASK-023: Postcard collection APIs
-**Priority**: P1 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Implement postcard ownership listing and reward grant path.
@@ -396,7 +396,7 @@ Implement postcard ownership listing and reward grant path.
 ---
 
 ### TASK-024: Postcard attach-to-letter API
-**Priority**: P1 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Implement `POST /letters/{id}/postcard` with ownership checks.
@@ -413,7 +413,7 @@ Implement `POST /letters/{id}/postcard` with ownership checks.
 ---
 
 ### TASK-025: Postcard UI picker and render in letter detail
-**Priority**: P1 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Build postcard collection UI and letter attachment interaction.
@@ -430,7 +430,7 @@ Build postcard collection UI and letter attachment interaction.
 ---
 
 ### TASK-026: Open-letter and moderation end-to-end integration
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Implement frontend open-letter feed/replies and moderation report flow.
@@ -449,7 +449,7 @@ Implement frontend open-letter feed/replies and moderation report flow.
 ## Sprint 4: Hardening and Release Readiness
 
 ### TASK-027: Global error handling and API error contract alignment
-**Priority**: P1 | **Estimate**: 2h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 2h | **Status**: Done
 
 **Description**:  
 Standardize backend and frontend error handling behavior.
@@ -465,7 +465,7 @@ Standardize backend and frontend error handling behavior.
 ---
 
 ### TASK-028: GDPR baseline capabilities
-**Priority**: P1 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Implement baseline user data export and account delete workflow hooks.
@@ -482,7 +482,7 @@ Implement baseline user data export and account delete workflow hooks.
 ---
 
 ### TASK-029: Query performance and reliability checks
-**Priority**: P1 | **Estimate**: 2h | **Status**: Ready
+**Priority**: P1 | **Estimate**: 2h | **Status**: Done
 
 **Description**:  
 Validate high-impact queries and task reliability before release.
@@ -499,7 +499,7 @@ Validate high-impact queries and task reliability before release.
 ---
 
 ### TASK-030: E2E suite and release checklist
-**Priority**: P0 | **Estimate**: 4h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 4h | **Status**: Done
 
 **Description**:  
 Implement Playwright happy-path suite and MVP release checklist.

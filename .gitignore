@@ -24,7 +24,7 @@ venv/
 
 # Node
 node_modules/
-pnpm-lock.yaml
+.pnpm-store
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

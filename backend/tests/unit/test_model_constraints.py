@@ -8,7 +8,6 @@ from django.utils import timezone
 from apps.letters.models import Letter, LetterVisibility
 from apps.postcards.models import Postcard, PostcardSourceType, PostcardUnlockSource, UserPostcard
 
-
 User = get_user_model()
 
 

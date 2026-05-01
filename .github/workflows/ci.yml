@@ -115,3 +115,24 @@ jobs:
             echo "Skip OpenAPI consistency check - orval config not present"
           fi
 
+  e2e:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.base_ref == 'main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - name: Enable corepack
+        run: corepack enable
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          pnpm install --frozen-lockfile || pnpm install
+      - name: Run Playwright suite
+        run: pnpm dlx playwright test
+

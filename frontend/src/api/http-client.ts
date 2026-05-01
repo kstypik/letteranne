@@ -5,6 +5,18 @@ export class ApiUnauthorizedError extends Error {
   }
 }
 
+export class ApiResponseError extends Error {
+  status?: number;
+  code?: string;
+
+  constructor(message: string, status?: number, code?: string) {
+    super(message);
+    this.name = "ApiResponseError";
+    this.status = status;
+    this.code = code;
+  }
+}
+
 type RequestMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 type ApiRequestOptions = {
@@ -58,7 +70,20 @@ export const apiRequest = async <T>(path: string, options: ApiRequestOptions = {
   }
 
   if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}`);
+    try {
+      const body = (await response.json()) as { error?: { message?: string; code?: string } };
+      const message = body.error?.message || "Something went wrong. Please try again.";
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("app:error", { detail: message }));
+      }
+      throw new ApiResponseError(message, response.status, body.error?.code);
+    } catch {
+      const fallback = "Something went wrong. Please try again.";
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("app:error", { detail: fallback }));
+      }
+      throw new ApiResponseError(fallback, response.status);
+    }
   }
 
   if (response.status === 204) {

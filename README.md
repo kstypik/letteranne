@@ -74,3 +74,20 @@ For test execution, set `DJANGO_SETTINGS_MODULE=config.settings.test` and a test
 cd frontend
 pnpm api:generate
 ```
+
+## Frontend Query Conventions
+
+- Query keys are centralized in `frontend/src/api/query-keys.ts`.
+- Domain-first structure is used for cache keys:
+  - `auth.session`
+  - `profile.me`
+  - `letters.list(params)` / `letters.detail(id)`
+  - `discovery.random` / `discovery.byDisplayId(displayId)`
+- All API hooks return standardized react-query results typed with `ApiError`
+  from `frontend/src/api/query-types.ts`.
+
+## GDPR Baseline
+
+- Data export endpoint (stub): `POST /gdpr/export`
+- Account deletion baseline: `POST /gdpr/delete-account` (current behavior: deactivates account)
+- Access control: both endpoints require authentication.
