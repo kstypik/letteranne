@@ -1,4 +1,4 @@
-from apps.postcards.models import Postcard, PostcardUnlockSource, UserPostcard
+from apps.postcards.models import Postcard, UserPostcard
 
 
 def grant_postcard_to_user(*, user, postcard: Postcard, unlocked_by: str = "event"):

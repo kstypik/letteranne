@@ -7,10 +7,11 @@ export default defineConfig({
     },
     output: {
       mode: "single",
-      target: "src/api/client.ts",
+      target: "src/api/openapi-generated.ts",
       client: "fetch",
       prettier: true,
-      clean: true
+      // Do not wipe `src/api/` — hooks and `http-client` live alongside generated types.
+      clean: false
     }
   }
 });

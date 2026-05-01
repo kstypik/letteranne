@@ -110,7 +110,7 @@ jobs:
           if [ -f frontend/orval.config.ts ]; then
             cd frontend
             pnpm run api:generate
-            git diff --exit-code src/api/client.ts
+            git diff --exit-code src/api/openapi-generated.ts
           else
             echo "Skip OpenAPI consistency check - orval config not present"
           fi
@@ -158,16 +158,16 @@ jobs:
           pnpm install --frozen-lockfile || pnpm install
 
       - name: Install Playwright browser deps
-        run: pnpm dlx playwright install --with-deps chromium
+        run: pnpm --dir frontend exec playwright install --with-deps chromium
 
       - name: Start services
         run: docker compose up -d --build
 
       - name: Wait for services
-        run: pnpm dlx wait-on http://localhost:5173 --timeout 60000
+        run: pnpm --dir frontend dlx wait-on http://localhost:5173 --timeout 60000
 
       - name: Run E2E tests
-        run: pnpm dlx playwright test
+        run: pnpm --dir frontend run test:e2e
 
       - name: Upload test results
         uses: actions/upload-artifact@v4

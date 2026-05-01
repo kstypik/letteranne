@@ -77,7 +77,7 @@ prod-logs: ## Tail production logs
 	docker compose -f docker-compose.prod.yml logs -f
 
 test-e2e: ## Run Playwright E2E tests
-	pnpm dlx playwright test
+	pnpm --dir frontend run test:e2e
 
 # ===========================================
 # Cleanup

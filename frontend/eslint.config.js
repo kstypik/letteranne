@@ -5,6 +5,7 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 
 export default [
+  { ignores: ["dist/**", "node_modules/**", "coverage/**", "src/api/openapi-generated.ts"] },
   js.configs.recommended,
   {
     files: ["**/*.{ts,tsx}"],
