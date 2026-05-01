@@ -2,92 +2,63 @@
 
 Letteranne is a modular monolith with a Django headless API backend and a React SPA frontend.
 
-## Project Structure
-
-```
-.
-├── backend/                # Django API application (apps, settings, tests)
-├── frontend/               # React SPA (routes, UI components, tests)
-├── .prodready/             # Product/design/plan artifacts
-├── docker-compose.yml      # Local multi-service orchestration
-├── Dockerfile              # Base container definition
-└── Makefile                # Local developer commands
-```
-
-### Workspace Conventions
-
-- `backend/`: API, domain services, DB migrations, backend test suite.
-- `frontend/`: SPA views/components, API client, frontend test suite.
-- Shared contracts are generated from OpenAPI and consumed by frontend tooling.
-
-## Local Setup
+## Quick Start
 
 ### Prerequisites
 
 - Docker and Docker Compose
 - Make
+- Node.js 22+ with `pnpm` (for local frontend tooling and E2E runs)
 
-### Start Development Environment (placeholder)
+### Development
 
 ```bash
+# Clone repository
+git clone <repo-url>
+cd letteranne
+
+# Create local environment variables
+cp .env.example .env
+
+# Start backend + frontend + database
 make dev
 ```
 
-### Backend Setup (placeholder)
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:8000`
+- Healthcheck: `http://localhost:8000/healthz`
+
+## Running Tests
 
 ```bash
-# TODO: add backend dependency install + migrate commands
+make test          # backend + frontend tests
+make test-e2e      # Playwright E2E tests
 ```
 
-### Database Readiness (dev/test)
+## Environment Variables
 
-Use Docker services as the source of truth for local DB readiness:
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DJANGO_SECRET_KEY` | Yes | Django secret key used for session and CSRF signing |
+| `DATABASE_URL` | Yes | PostgreSQL connection string for backend |
+| `ALLOWED_HOSTS` | Yes (prod) | Comma-separated Django allowed hosts |
+| `DJANGO_DEBUG` | No | `1` for local dev, `0` for production |
+| `POSTGRES_USER` | Yes (prod compose) | PostgreSQL username |
+| `POSTGRES_PASSWORD` | Yes (prod compose) | PostgreSQL password |
+| `POSTGRES_DB` | Yes (prod compose) | PostgreSQL database name |
 
-```bash
-make dev          # starts backend, frontend, postgres
-make migrate      # applies Django migrations against configured DATABASE_URL
-make db-shell     # opens psql for manual verification
-```
+## Architecture
 
-For test execution, set `DJANGO_SETTINGS_MODULE=config.settings.test` and a test `DATABASE_URL`
-(CI already provides this in `.github/workflows/ci.yml`).
+- Backend: Django API (`backend/`) with domain-specific apps.
+- Frontend: React + TanStack stack (`frontend/`).
+- Database: PostgreSQL for users, letters, moderation, and profile data.
+- API contract source: `.prodready/design/api/openapi.yaml`.
 
-### Frontend Setup (placeholder)
+## API Documentation
 
-```bash
-# TODO: add frontend dependency install + dev server commands
-```
+- OpenAPI endpoint: `GET /openapi`
+- Human-oriented API reference: `docs/api.md`
 
-### Running Tests (placeholder)
+## Deployment
 
-```bash
-# TODO: add backend/frontend test commands
-```
-
-## API Contract Generation
-
-- Backend source of truth: `.prodready/design/api/openapi.yaml`
-- Backend schema endpoint: `GET /openapi`
-- Frontend typed client generation:
-
-```bash
-cd frontend
-pnpm api:generate
-```
-
-## Frontend Query Conventions
-
-- Query keys are centralized in `frontend/src/api/query-keys.ts`.
-- Domain-first structure is used for cache keys:
-  - `auth.session`
-  - `profile.me`
-  - `letters.list(params)` / `letters.detail(id)`
-  - `discovery.random` / `discovery.byDisplayId(displayId)`
-- All API hooks return standardized react-query results typed with `ApiError`
-  from `frontend/src/api/query-types.ts`.
-
-## GDPR Baseline
-
-- Data export endpoint (stub): `POST /gdpr/export`
-- Account deletion baseline: `POST /gdpr/delete-account` (current behavior: deactivates account)
-- Access control: both endpoints require authentication.
+Production deployment steps are documented in `DEPLOYMENT.md`.

@@ -1,4 +1,4 @@
-.PHONY: dev dev-build dev-down dev-logs test lint format typecheck migrate makemigrations db-shell db-reset clean help
+.PHONY: dev dev-build dev-down dev-logs test test-e2e lint format typecheck migrate makemigrations db-shell db-reset build build-prod prod-up prod-down prod-logs clean help
 
 # ===========================================
 # Development
@@ -56,6 +56,28 @@ db-shell: ## Open psql shell in db container
 db-reset: ## Reset database volume and restart
 	docker compose down -v
 	docker compose up -d db
+
+# ===========================================
+# Production
+# ===========================================
+
+build: ## Build production backend image
+	docker build --target backend-prod -t letteranne:latest .
+
+build-prod: ## Build production stack with compose
+	docker compose -f docker-compose.prod.yml build
+
+prod-up: ## Start production environment
+	docker compose -f docker-compose.prod.yml up -d
+
+prod-down: ## Stop production environment
+	docker compose -f docker-compose.prod.yml down
+
+prod-logs: ## Tail production logs
+	docker compose -f docker-compose.prod.yml logs -f
+
+test-e2e: ## Run Playwright E2E tests
+	pnpm dlx playwright test
 
 # ===========================================
 # Cleanup

@@ -13,9 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
     curl \
     ca-certificates \
-    gcc \
-    libpq-dev \
-    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 #############################################
@@ -52,13 +49,37 @@ CMD ["sh", "-lc", "if [ -f package.json ]; then pnpm dev --host 0.0.0.0 --port 5
 #############################################
 # Backend production draft
 #############################################
+FROM python:3.13-slim AS backend-prod-builder
+WORKDIR /app/backend
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+COPY backend/ /app/backend
+
+RUN pip install --upgrade pip setuptools wheel && \
+    if [ -f /app/backend/requirements.txt ]; then pip install -r /app/backend/requirements.txt; fi && \
+    pip install "django>=5.1,<6.1" "gunicorn>=23.0.0" "psycopg[binary]>=3.2.0"
+
 FROM base AS backend-prod
 WORKDIR /app/backend
 
-COPY . /app
+ENV PATH="/opt/venv/bin:$PATH" \
+    DJANGO_SETTINGS_MODULE=config.settings.prod
 
-RUN addgroup --system app && adduser --system --ingroup app app && \
-    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+RUN addgroup --system app && adduser --system --ingroup app app
+
+COPY --from=backend-prod-builder /opt/venv /opt/venv
+COPY --chown=app:app backend/ /app/backend
 
 USER app
 
