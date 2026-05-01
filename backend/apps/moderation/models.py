@@ -27,6 +27,6 @@ class ModerationReport(models.Model):
     class Meta:
         db_table = "moderation_report"
         indexes = [
-            models.Index(fields=["status", "-created_at"], name="idx_moderation_report_status_created_at")
+            models.Index(fields=["status", "-created_at"], name="idx_mod_rpt_st_crt_at")
         ]
 

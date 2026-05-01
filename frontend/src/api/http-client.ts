@@ -43,6 +43,18 @@ const requiresCsrf = (method: RequestMethod): boolean => {
   return ["POST", "PUT", "PATCH", "DELETE"].includes(method);
 };
 
+/** Absolute backend origin + path prefix (no trailing slash), e.g. http://localhost:8000 */
+const resolveApiUrl = (path: string): string => {
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+  const rawBase = import.meta.env.VITE_API_BASE_URL;
+  const base =
+    typeof rawBase === "string" && rawBase.length > 0 ? rawBase.replace(/\/$/, "") : "";
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return base ? `${base}${normalizedPath}` : normalizedPath;
+};
+
 export const apiRequest = async <T>(path: string, options: ApiRequestOptions = {}): Promise<T> => {
   const method: RequestMethod = options.method ?? "GET";
   const headers: Record<string, string> = {
@@ -57,7 +69,7 @@ export const apiRequest = async <T>(path: string, options: ApiRequestOptions = {
     }
   }
 
-  const response = await fetch(path, {
+  const response = await fetch(resolveApiUrl(path), {
     method,
     credentials: "include",
     headers,

@@ -2,6 +2,9 @@
 
 Letteranne is a modular monolith with a Django headless API backend and a React SPA frontend.
 
+** Warning ** This project is entirely AI-generated as my experiment on LLMs performance. So far I don't like the output...
+
+
 ## Quick Start
 
 ### Prerequisites
@@ -62,3 +65,7 @@ make test-e2e      # Playwright E2E tests
 ## Deployment
 
 Production deployment steps are documented in `DEPLOYMENT.md`.
+
+## Name Origin
+
+The name came to my mind while reading L. M. Montgomery's book *Anne of Windy Poplars* which largely consists of letters Anne wrote to her fiancé Gilbert.

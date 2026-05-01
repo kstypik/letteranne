@@ -37,7 +37,7 @@ services:
       - .:/app
       - frontend_node_modules:/app/frontend/node_modules
     environment:
-      VITE_API_BASE_URL: http://localhost:8000/api
+      VITE_API_BASE_URL: http://localhost:8000
     depends_on:
       backend:
         condition: service_healthy

@@ -9,6 +9,7 @@ description = "Letteranne Django API backend"
 requires-python = ">=3.13"
 dependencies = [
   "Django>=5.1,<6.1",
+  "psycopg[binary]>=3.2.0",
 ]
 
 [tool.setuptools.packages.find]

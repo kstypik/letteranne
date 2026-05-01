@@ -50,8 +50,8 @@ class Letter(models.Model):
         ]
         indexes = [
             models.Index(fields=["sender", "-created_at"], name="idx_letter_sender_created_at"),
-            models.Index(fields=["recipient", "-created_at"], name="idx_letter_recipient_created_at"),
-            models.Index(fields=["visibility", "-created_at"], name="idx_letter_visibility_created_at"),
+            models.Index(fields=["recipient", "-created_at"], name="idx_lttr_rcpt_crt_at"),
+            models.Index(fields=["visibility", "-created_at"], name="idx_lttr_vis_crt_at"),
             models.Index(fields=["parent_letter"], name="idx_letter_parent_letter_id"),
         ]
 

@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
             options={
                 "db_table": "user_postcard",
                 "indexes": [
-                    models.Index(fields=["user", "-unlocked_at"], name="idx_user_postcard_user_unlocked_at")
+                    models.Index(fields=["user", "-unlocked_at"], name="idx_usr_pc_usr_unlck")
                 ],
                 "constraints": [
                     models.UniqueConstraint(fields=("user", "postcard"), name="uniq_user_postcard_pair")
