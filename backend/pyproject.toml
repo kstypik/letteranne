@@ -1,0 +1,28 @@
+[project]
+name = "letteranne-backend"
+version = "0.1.0"
+description = "Letteranne Django API backend"
+requires-python = ">=3.13"
+dependencies = [
+  "Django>=5.1,<6.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-django>=4.8.0",
+  "ruff>=0.6.0",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py", "*_test.py", "tests.py"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+

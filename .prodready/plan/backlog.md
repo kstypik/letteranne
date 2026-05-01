@@ -20,7 +20,7 @@ Create backend/frontend workspace structure, shared conventions, and base docs.
 ---
 
 ### TASK-002: Docker local development baseline
-**Priority**: P0 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Set up containerized local environment for backend, frontend, and PostgreSQL.
@@ -37,7 +37,7 @@ Set up containerized local environment for backend, frontend, and PostgreSQL.
 ---
 
 ### TASK-003: Backend Django project bootstrap
-**Priority**: P0 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Initialize Django 6 project with modular app layout and settings split.
@@ -54,7 +54,7 @@ Initialize Django 6 project with modular app layout and settings split.
 ---
 
 ### TASK-004: Frontend React SPA bootstrap
-**Priority**: P0 | **Estimate**: 3h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 3h | **Status**: Done
 
 **Description**:  
 Initialize React TypeScript strict SPA with TanStack Router/Query baseline.
