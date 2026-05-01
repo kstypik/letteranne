@@ -1,0 +1,123 @@
+flowchart TD
+    subgraph S1[Sprint 1: Foundation]
+        T001[TASK-001 Workspace Scaffolding]
+        T002[TASK-002 Docker Baseline]
+        T003[TASK-003 Django Bootstrap]
+        T004[TASK-004 React Bootstrap]
+        T005[TASK-005 DB Connection]
+        T006[TASK-006 CI Baseline]
+        T007[TASK-007 Auth Integration]
+        T008[TASK-008 Core Models]
+        T009[TASK-009 OpenAPI + Orval]
+    end
+
+    subgraph S2[Sprint 2: Core Letters and Profile]
+        T010[TASK-010 Auth Screens + Shell]
+        T011[TASK-011 Session + CSRF Client]
+        T012[TASK-012 Typed API Hooks]
+        T013[TASK-013 Profile API]
+        T014[TASK-014 Private Letter APIs]
+        T015[TASK-015 Composer UI]
+        T016[TASK-016 Letter History API]
+        T017[TASK-017 History + Detail UI]
+    end
+
+    subgraph S3[Sprint 3: Discovery Open Postcards]
+        T018[TASK-018 Discovery APIs]
+        T019[TASK-019 Profile UI]
+        T020[TASK-020 Discovery UI]
+        T021[TASK-021 Open Letter APIs]
+        T022[TASK-022 Delivery Scheduler]
+        T023[TASK-023 Postcard Collection API]
+        T024[TASK-024 Postcard Attach API]
+        T025[TASK-025 Postcard UI]
+        T026[TASK-026 Open Letter + Moderation E2E Integration]
+    end
+
+    subgraph S4[Sprint 4: Hardening]
+        T027[TASK-027 Error Contract + UX]
+        T028[TASK-028 GDPR Baseline]
+        T029[TASK-029 Query + Reliability Checks]
+        T030[TASK-030 Playwright + Release]
+    end
+
+    T001 --> T002
+    T001 --> T003
+    T001 --> T004
+    T002 --> T005
+    T003 --> T005
+    T002 --> T006
+    T003 --> T006
+    T004 --> T006
+    T003 --> T007
+    T005 --> T007
+    T003 --> T008
+    T005 --> T008
+    T003 --> T009
+    T004 --> T009
+
+    T004 --> T010
+    T007 --> T010
+    T007 --> T011
+    T010 --> T011
+    T009 --> T012
+    T011 --> T012
+    T008 --> T013
+    T011 --> T013
+    T007 --> T014
+    T008 --> T014
+    T011 --> T015
+    T012 --> T015
+    T014 --> T015
+    T008 --> T016
+    T014 --> T016
+    T011 --> T017
+    T012 --> T017
+    T016 --> T017
+
+    T007 --> T018
+    T008 --> T018
+    T010 --> T019
+    T013 --> T019
+    T012 --> T020
+    T018 --> T020
+    T019 --> T020
+    T008 --> T021
+    T014 --> T021
+    T014 --> T022
+    T015 --> T022
+    T008 --> T023
+    T014 --> T024
+    T023 --> T024
+    T012 --> T025
+    T024 --> T025
+    T017 --> T026
+    T020 --> T026
+    T021 --> T026
+    T022 --> T026
+    T024 --> T026
+    T025 --> T026
+
+    T014 --> T027
+    T017 --> T027
+    T007 --> T028
+    T008 --> T028
+    T026 --> T028
+    T022 --> T029
+    T026 --> T029
+    T006 --> T030
+    T026 --> T030
+    T027 --> T030
+    T028 --> T030
+    T029 --> T030
+
+    style T001 fill:#10B981
+    style T002 fill:#10B981
+    style T003 fill:#10B981
+    style T004 fill:#10B981
+    style T005 fill:#10B981
+    style T006 fill:#10B981
+    style T007 fill:#10B981
+    style T008 fill:#10B981
+    style T009 fill:#10B981
+
