@@ -3,7 +3,7 @@
 ## Sprint 1: Foundation
 
 ### TASK-001: Repository and workspace scaffolding
-**Priority**: P0 | **Estimate**: 2h | **Status**: Ready
+**Priority**: P0 | **Estimate**: 2h | **Status**: Done
 
 **Description**:  
 Create backend/frontend workspace structure, shared conventions, and base docs.
